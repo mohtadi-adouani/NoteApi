@@ -1,0 +1,9 @@
+# virtual environament
+backend/.venv
+# environements variabale
+backend/*/.env
+# IDE
+.idea
+
+# data
+backend/db.sqlite3
