@@ -25,6 +25,10 @@ export class AuthService {
     )
   }
 
+  logout(){
+    localStorage.clear()
+  }
+
   isAuthentified(){ return localStorage.getItem(this.getTokenHeader()) != null}
   getTokenHeader(){return this.access_header}
   getRefreshHeader(){return this.refresh_header}
