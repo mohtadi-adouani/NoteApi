@@ -17,7 +17,6 @@ export class NavBarComponent implements OnInit{
   constructor(private authService: AuthService) {}
   protected isLogged: boolean | undefined;
 
-
   ngOnInit(){
     this.authService.isLogged.subscribe(logged => {
       this.isLogged = logged;
