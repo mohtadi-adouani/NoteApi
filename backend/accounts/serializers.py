@@ -35,7 +35,16 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+class TokenSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data['username'] = self.user.username
+        data['userId'] = self.user.pk
+        data['email'] = self.user.email
+        data['token'] = data['access']
+        return data
+
+class MyTokenObtainPairSerializer(TokenSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
