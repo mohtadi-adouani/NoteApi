@@ -19,7 +19,7 @@
         <div *ngIf="authService.isLoggedIn();then is_logged else is_not_logged"></div>
         <ng-template #is_logged>
           <li  class="nav-item">
-            <a class="nav-link active" routerLink="/logout">Logout
+            <a class="nav-link" routerLink="/logout">Logout({{ authService.getUser()?.username}})
               <span class="visually-hidden">(current)</span>
             </a>
           </li>

@@ -29,15 +29,13 @@ export class RefreshToken {
 }
 
 
-export class User {
-  name?: string;
-}
 
 export class Auth {
+  constructor() {
+  }
   username?: string;
   email?: string;
   token?: string;
-  userId?: string;
-  role?: string;
+  userId?: number;
   detail?: string;
 }

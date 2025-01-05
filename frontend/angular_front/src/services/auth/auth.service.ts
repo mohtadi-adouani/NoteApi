@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map, Observable, of, tap} from 'rxjs';
 import {Router} from '@angular/router';
-import {User, Auth, Credentials} from '../../interfaces/credentials'
-import {toObservable} from '@angular/core/rxjs-interop';
+import {Auth, Credentials} from '../../interfaces/credentials'
 
 
 @Injectable({
@@ -40,7 +39,7 @@ export class AuthService {
   private setUserSession(user: Auth): void {
     if (user.token) {
       const data = {
-        name: user.username,
+        username: user.username,
         email: user.email,
         token: user.token,
         userId: user.userId,
@@ -84,6 +83,15 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  getUser(): Auth | null {
+    const user_data_str = localStorage.getItem(this.USER_DATA_KEY);
+    if(user_data_str){
+      const user_data_json = JSON.parse(user_data_str);
+      return Object.assign(new Auth(), user_data_json);
+    }
+    return null
   }
 
   logout(): void {
