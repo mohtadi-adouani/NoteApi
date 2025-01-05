@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RouterLink,} from '@angular/router';
 import {AuthService} from '../../services/auth/auth.service';
-import {AsyncPipe, NgIf} from '@angular/common';
-import {Observable, Subscription} from 'rxjs';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,12 +12,7 @@ import {Observable, Subscription} from 'rxjs';
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBarComponent implements OnInit, OnDestroy{
+export class NavBarComponent{
   constructor(protected authService: AuthService) {}
-
-  ngOnInit(): void {
-  }
-  ngOnDestroy(){
-  }
 
 }
