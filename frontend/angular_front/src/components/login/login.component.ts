@@ -46,13 +46,14 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         const credentials = new Credentials(this.f['username'].value, this.f['password'].value)
-        this.authService.login(credentials)
+        this.authService.loginUser(credentials)
             .subscribe({
                 next: () => {
-                    this.router.navigateByUrl('/home');
+                  this.router.navigate(['home']);
                 },
                 error: error => {
                     console.log(error);
+                    this.router.navigate(['login']);
                     this.loading = false;
                 }
             });

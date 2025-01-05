@@ -16,21 +16,26 @@
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
-          <li *ngIf="isLogged" class="nav-item">
+        <div *ngIf="authService.isLoggedIn();then is_logged else is_not_logged"></div>
+        <ng-template #is_logged>
+          <li  class="nav-item">
             <a class="nav-link active" routerLink="/logout">Logout
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
-          <li  *ngIf="!isLogged" class="nav-item">
+        </ng-template>
+        <ng-template #is_not_logged>
+          <li  class="nav-item">
             <a class="nav-link active" routerLink="/login">Login
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
-          <li  *ngIf="!isLogged" class="nav-item">
+          <li class="nav-item">
             <a class="nav-link active" routerLink="/register">Register
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
+        </ng-template>
       </ul>
     </div>
   </div>

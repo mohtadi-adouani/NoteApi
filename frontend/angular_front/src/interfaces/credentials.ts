@@ -27,3 +27,17 @@ export class RefreshToken {
     }
   refresh: string | null = '';
 }
+
+
+export class User {
+  name?: string;
+}
+
+export class Auth {
+  username?: string;
+  email?: string;
+  token?: string;
+  userId?: string;
+  role?: string;
+  detail?: string;
+}
