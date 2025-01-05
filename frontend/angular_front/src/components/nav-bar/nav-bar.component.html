@@ -1,42 +1,18 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Blog</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/home">Home
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/posts">Posts
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-        <div *ngIf="authService.isLoggedIn();then is_logged else is_not_logged"></div>
-        <ng-template #is_logged>
-          <li  class="nav-item">
-            <a class="nav-link" routerLink="/logout">Logout({{ authService.getUser()?.username}})
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-        </ng-template>
-        <ng-template #is_not_logged>
-          <li  class="nav-item">
-            <a class="nav-link active" routerLink="/login">Login
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/register">Register
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-        </ng-template>
-      </ul>
-    </div>
-  </div>
-</nav>
+<mat-toolbar color="primary">
+  <span><a  routerLink="/home">Blog</a></span>
+  <span class="fill-remaining-space"></span>
+  <span><a routerLink="/posts">Posts</a></span>
+  <span class="fill-remaining-space"></span>
+  <div *ngIf="authService.isLoggedIn();then is_logged else is_not_logged"></div>
+  <ng-template #is_logged>
+    <span><a routerLink="/logout">Logout({{ authService.getUser()?.username}})</a></span>
+    <span class="fill-remaining-space"></span>
+  </ng-template>
+  <ng-template #is_not_logged>
+      <span><a routerLink="/login">Login</a></span>
+    <span class="fill-remaining-space"></span>
+    <span><a routerLink="/register">Register</a></span>
+    <span class="fill-remaining-space"></span>
+  </ng-template>
+</mat-toolbar>
+
