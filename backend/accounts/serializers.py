@@ -42,6 +42,9 @@ class TokenSerializer(TokenObtainPairSerializer):
         data['userId'] = self.user.pk
         data['email'] = self.user.email
         data['token'] = data['access']
+        data['access_lifetime'] = self.token_class.access_token_class.lifetime
+        data['refresh_lifetime'] = self.token_class.lifetime
+
         return data
 
 class MyTokenObtainPairSerializer(TokenSerializer):
