@@ -35,15 +35,19 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+class AuthUserSerializer(serializers.ModelSerializer):
+    """ user authentication response"""
+    class Meta:
+        model = ApiUser
+        fields = ['id', 'username']
+
 class TokenSerializer(TokenObtainPairSerializer):
+    """ token authentication response """
     def validate(self, attrs):
         data = super().validate(attrs)
-        data['username'] = self.user.username
-        data['userId'] = self.user.pk
-        data['email'] = self.user.email
-        data['token'] = data['access']
         data['access_lifetime'] = self.token_class.access_token_class.lifetime
         data['refresh_lifetime'] = self.token_class.lifetime
+        data['user'] =  AuthUserSerializer(self.user).data
 
         return data
 
