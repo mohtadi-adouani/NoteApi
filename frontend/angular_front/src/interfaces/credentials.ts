@@ -25,17 +25,20 @@ export class RefreshToken {
   constructor(refresh: string | null){
       this.refresh = refresh;
     }
-  refresh: string | null = '';
+  refresh: string | null;
 }
 
-
+export class AuthUserResponse {
+  username?: string;
+  id?: number;
+}
 
 export class Auth {
-  constructor() {
-  }
-  username?: string;
-  email?: string;
-  token?: string;
-  userId?: number;
+  constructor() {}
+  access?: string;
+  refresh?: string;
+  access_lifetime?: number | null = null;
+  refresh_lifetime?: number | null = null;
   detail?: string;
+  user?: AuthUserResponse;
 }
