@@ -1,7 +1,7 @@
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
 
 from .models import ApiUser
 
@@ -58,3 +58,9 @@ class MyTokenObtainPairSerializer(TokenSerializer):
         # Add email to token
         token['username'] = user.username
         return token
+
+class MyTokenRefreshSerializer(TokenRefreshSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data['access_lifetime'] = self.token_class.access_token_class.lifetime
+        return data
